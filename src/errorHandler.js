@@ -18,7 +18,9 @@ function errorHandler(err, _req, res, _next) {
 		}
 	}
 	res.status(response.statusCode).json(response);
-	errorLogger(err, response);
+	if (process.env.NODE_ENV === 'development') {
+		errorLogger(err, response);
+	}
 	return;
 }
 
